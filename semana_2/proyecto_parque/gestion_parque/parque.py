@@ -30,49 +30,42 @@ def calcular_precio(atraccion):
 def registrar_visita():
     nombre = input("ingrese su nombre")
     edad = int(input("ingrese su edad"))
+    
+    mostrar_atraccion()
 
-    mostrar_atraccion()  
-    atracciones_elegidas = ""
-    atracciones_compradas = 0
-    total = 0
+    cantidad = int(input("cuantas atracciones desea utilizar?"))
 
-    if puede_subir(edad,"montaña rusa"):
-        respuesta = input("¿Desea subir a la Montaña Rusa? (s/n): ")
-        if respuesta == "s" or respuesta == "S":
-            atracciones_elegidas += "montaña rusa;"
-            total = total + calcular_precio("Montaña Rusa")
-            atracciones_compradas += 1
-    else:
-        print("No puede subir a la Montaña Rusa por su edad.")
+    atraccion_1 = "" 
+    atraccion_2 = ""
+    atraccion_3 = ""
 
+    for i in range(1, cantidad + 1):
+        atr = input(f"ingrese el nombre de su atraccion Nº {i}")
+        if i == 1:
+            atraccion_1 = atr
+        elif i == 2:
+            atraccion_2 = atr
+        elif i == 3:
+            atraccion_3 = atr
+        else :
+            print("numero de atraccion no valido")
+    
+    print(f"nombre: {nombre}")
+    print(f"edad: {edad}")
+    print(f"cantidad de atracciones elegidas; {cantidad}")
+    print(f"atracciones elegidas: {atraccion_1}, {atraccion_2}, {atraccion_3}")
 
-    if puede_subir(edad, "Casa de Terror"):
-        respuesta = input("¿Desea subir a la Casa de Terror? (s/n): ")
-        if respuesta == "s" or respuesta == "S":
-            atracciones_elegidas += "casa de terror,"
-            total = total + calcular_precio("Casa de Terror")
-            atracciones_compradas += 1
-    else:
-        print("No puede subir a la Casa de Terror por su edad.")
+    return nombre, edad, atraccion_1, atraccion_2, atraccion_3
+
 
     
-    if puede_subir(edad, "Carrusel"):
-        respuesta = input("¿Desea subir a la Carrusel? (s/n): ")
-        if respuesta == "s" or respuesta == "S":
-            atracciones_elegidas
-            total = total + calcular_precio("Carrusel")
-            atracciones_compradas += 1
-    else:
-        print("No puede subir a la Carrusel por su edad.")
-    if atracciones_compradas >= 3:
-        total = total - (total * 0.10)
-         
-    return nombre, edad, atracciones_elegidas, total
+
+
 
    
-def mostrar_resumen(nombre, edad, total, atracciones_elegidas):
+def mostrar_resumen(nombre, edad, total, atracciones_permitidas):
     print("----resumen de la visita----")
     print(f"nombre:{nombre}")
     print(f"edad:{edad}")
-    print(f"atracciones elegidas:{atracciones_elegidas}")
+    print(f"atracciones elegidas:{atracciones_permitidas}")
     print(f"costo total de la visita: {total}")
